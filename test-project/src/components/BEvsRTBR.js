@@ -2,7 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import {useState, useEffect} from 'react'
 import {  useNavigate } from 'react-router-dom';
-import "bootstrap/dist/css/bootstrap.min.css";
+
 import { Postdata } from '../SErvixe/Postdata';
 
 function BEvsRTBR() {
