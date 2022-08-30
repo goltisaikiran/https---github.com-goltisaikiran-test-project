@@ -6,7 +6,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Postdata } from '../SErvixe/Postdata';
 
 function BEvsRTBR() {
-  const [a,aa]=useState()
   const [add,setAdd]=useState(true);
   const[data,setData] =useState({
     Q:"",
