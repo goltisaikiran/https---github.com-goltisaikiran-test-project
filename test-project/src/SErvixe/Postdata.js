@@ -10,3 +10,5 @@ export const Postdata = (data) => {
       console.log(e.data)
     })
 };
+
+

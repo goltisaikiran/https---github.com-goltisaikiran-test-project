@@ -6,12 +6,13 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Postdata } from '../SErvixe/Postdata';
 
 function BEvsRTBR() {
+  let navigate=useNavigate();
+  const [tab,setTab]=useState({ });
   const [add,setAdd]=useState(true);
+  const [modify,setModify]=useState(true);
   const[data,setData] =useState({
     Q:"",
-    firstRTBR:"",
-    secondRTBR:"",
-    thirdRTBR:"",
+    id:"",
     vertical:"",
     code:"",
     BE:"",
@@ -34,12 +35,8 @@ function BEvsRTBR() {
     RTBR_HPBE:"",
     remarks:""
   })
-  const [tab,setTab]=useState({
- 
-  });
-let navigate=useNavigate();
-
- useEffect(()=>{
+  
+const fetch=()=>{
   axios
     .get("http://localhost:4000/data")
     .then((r) => {
@@ -48,6 +45,10 @@ let navigate=useNavigate();
     .catch((e) => {
       console.log(e.data);
     });
+}
+
+ useEffect(()=>{
+fetch();
 },[])
 
 
@@ -56,19 +57,12 @@ axios.delete("http://localhost:4000/data/"+id)
 .then(r=>{
   console.log(r.data)
   alert(`Deleted Sucessfully`)
-  axios.get("http://localhost:4000/data")
-.then(r=>{
-  setTab(r.data)
-})
-.catch(e=>{
-  console.log(e.data)
-})
+ fetch();
 })
 .catch(e=>{
   console.log(e.data)
 })
 }
-
 
 
 const th=document.getElementsByTagName('th');
@@ -103,6 +97,29 @@ function sortTable(c) {
     }
   }
 }
+const modifyAcount=(id)=>{
+  setModify(false)
+  axios.get("http://localhost:4000/data/"+id)
+  .then(r=>{
+   setData(r.data)
+  })
+  .catch(e=>{
+   console.log(e.data)
+  })
+}
+const modifyData=(e,id)=>{
+ 
+  axios.put("http://localhost:4000/data/"+id ,data)
+    .then(r=>{
+      alert("Updated")
+      console.log(r.data)
+    })
+    .catch(e=>{
+      console.log(e.data)
+    })
+    navigate("/inputScreen")
+}
+
 const addacount=(e)=>{
   e.preventDefault();
   setAdd(false)
@@ -180,6 +197,30 @@ Quarter:<select value={data.Q} onChange={(e)=>setData({...data,Q:e.target.value}
         <td><input type='text' value={data.remarks} onChange={(e)=>setData({...data,remarks:e.target.value})}/></td>
         <td colSpan="2"><button  className="btn btn-outline-success" onClick={(e)=>{adddata(e)}}>Save</button></td>
         </tr>}
+        {modify?"":
+        <tr>
+        
+        <td><input type='text' value={data.vertical} onChange={(e)=>setData({...data,vertical:e.target.value})}/></td>
+        <td><input type='text' value={data.code} onChange={(e)=>setData({...data,code:e.target.value})}/></td>
+        <td><input type='number' value={data.BE} onChange={(e)=>setData({...data,BE:e.target.value})}/></td>
+        <td><input type='number' value={data.BETBU} onChange={(e)=>setData({...data,BETBU:e.target.value})}/></td>
+        <td><input type='number' value={data.change} onChange={(e)=>setData({...data,change:e.target.value})}/></td>
+        <td><input type='number'value={data.confirmed} onChange={(e)=>setData({...data,confirmed:e.target.value})} /></td>
+        <td><input type='number'value={data.HP} onChange={(e)=>setData({...data,HP:e.target.value})} /></td>
+        <td><input type='number' value={data.confHP} onChange={(e)=>setData({...data,confHP:e.target.value})}/></td>
+        <td><input type='number' value={data.LP} onChange={(e)=>setData({...data,LP:e.target.value})}/></td>
+        <td><input type='number' value={data.risk} onChange={(e)=>setData({...data,risk:e.target.value})}/></td>
+        <td><input type='number' value={data.rag} onChange={(e)=>setData({...data,rag:e.target.value})}/></td>
+        <td><input type='number' value={data.rar} onChange={(e)=>setData({...data,rar:e.target.value})}/></td>
+        <td><input type='number' value={data.rtin} onChange={(e)=>setData({...data,rtin:e.target.value})}/></td>
+        <td><input type='number' value={data.rtout} onChange={(e)=>setData({...data,rtout:e.target.value})}/></td>
+        <td><input type='number' value={data.julRTBR} onChange={(e)=>setData({...data,julRTBR:e.target.value})}/></td>
+        <td><input type='number' value={data.augRTBR} onChange={(e)=>setData({...data,augRTBR:e.target.value})}/></td>
+        <td><input type='number' value={data.sepRTBR} onChange={(e)=>setData({...data,sepRTBR:e.target.value})}/></td>
+        <td colSpan="3"></td>
+        <td><input type='text' value={data.remarks} onChange={(e)=>setData({...data,remarks:e.target.value})}/></td>
+        <td colSpan="2"><button  className="btn btn-outline-success" onClick={(e)=>{modifyData(e,data.id)}}>Save</button></td>
+        </tr>}
         </thead>
         <tbody>
         {tab.length > 0 && (
@@ -207,11 +248,12 @@ Quarter:<select value={data.Q} onChange={(e)=>setData({...data,Q:e.target.value}
             <td>{Number(d.julRTBR)+Number(d.augRTBR)+Number(d.sepRTBR)-Number(d.BE)}</td>
             <td>{Number(d.julRTBR)+Number(d.augRTBR)+Number(d.sepRTBR)-Number(d.BETBU)}</td>
             <td>{d.remarks}</td>            
-            <td><button  className="btn btn-outline-info" onClick={()=>navigate('Modify/'+d.id)}>Modify</button></td>
+            <td><button  className="btn btn-outline-info" onClick={()=>{modifyAcount(d.id)}}>Modify</button></td>
             <td><button className="btn btn-outline-danger" onClick={()=>delrow(d.id)}>Delete</button> </td>
           </tr>);
             })
             )}
+            {/* navigate('Modify/'+d.id) */}
         </tbody>
       </table>
     </div>
