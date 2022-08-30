@@ -1,0 +1,76 @@
+/* App.js styling */
+ .titlebar{
+  background-color:rgba(132, 38, 191,1); 
+  display:flex;
+  letter-spacing:1.4px;
+  width: 100%;
+  justify-content: flex-start;
+}
+.titlebar .nav{
+  margin:1%;
+  color:white;
+  text-decoration: none;
+  font-size:200%;
+  font-weight:bold;
+}
+
+.titlebar div{
+  margin:2%;
+  color:white;
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+
+
+.mainNav{
+  background-color:aliceblue;
+  display:flex;
+  width:100%;
+}
+.mainNav .nav{
+  color:black;
+  border-radius: 15px;
+  font-style: none;
+  padding:5px;
+  margin:10px;
+  text-decoration: none;
+  box-shadow: 3px 3px 3px gray, -3px -3px 3px gray;
+}
+.mainNav .nav:hover{
+  background-color: rgba(132, 38, 191,1);
+  color:white;
+}
+
+/* inputScreen styling */
+
+.subnav{
+  
+  background-color: beige;
+  display:flex;
+  justify-content:space-around;
+  width:100%;
+  
+}
+.subnav .navi{
+  color:blueviolet;
+  padding:0.2%;
+  margin:0.5%;
+  text-decoration: none;
+ 
+}
+.subnav .navi:hover{
+  border-bottom:solid rgba(132, 38, 191,1) ;
+  color:black;
+  display:flex;
+  box-shadow: 3px 3px 3px gray;
+}
+
+
+.heading{
+display:flex;
+justify-content:center;
+  color:blue
+}
+.form{
+  background-color:cornsilk;
+  padding:7%
+}  
