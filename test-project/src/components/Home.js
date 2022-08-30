@@ -8,7 +8,7 @@ function Home() {
   };
   return (
     <div>
-      <h1 className="heading">Welcomee</h1>
+      <h1 className="heading">Welcome</h1>
       <button
         style={{
           marginLeft: "46%",
