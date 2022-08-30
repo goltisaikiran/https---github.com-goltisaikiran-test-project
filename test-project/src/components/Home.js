@@ -15,7 +15,7 @@ function Home() {
           color: "white",
           backgroundColor: "rgba(132, 38, 191,1)",
         }}
-        
+        className="btn "
         onClick={addacount}
       >
         AddAccount
