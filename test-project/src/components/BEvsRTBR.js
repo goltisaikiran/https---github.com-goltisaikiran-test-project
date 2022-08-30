@@ -6,6 +6,7 @@ import {  useNavigate } from 'react-router-dom';
 import { Postdata } from '../SErvixe/Postdata';
 
 function BEvsRTBR() {
+  const [a,aa]=useState()
   const [add,setAdd]=useState(true);
   const[data,setData] =useState({
     Q:"",
