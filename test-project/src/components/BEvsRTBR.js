@@ -1,15 +1,16 @@
 import React from 'react'
 import axios from 'axios'
 import {useState, useEffect} from 'react'
-import {  useNavigate } from 'react-router-dom';
+// import {  useNavigate } from 'react-router-dom';
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Postdata } from '../SErvixe/Postdata';
 
 function BEvsRTBR() {
-  let navigate=useNavigate();
+  // let navigate=useNavigate();
   const [tab,setTab]=useState({ });
   const [add,setAdd]=useState(true);
   const [modify,setModify]=useState(true);
+  const [data1 ,setData1] =useState({});
   const[data,setData] =useState({
     Q:"",
     id:"",
@@ -49,7 +50,7 @@ const fetch=()=>{
 
  useEffect(()=>{
 fetch();
-},[])
+},[add,modify])
 
 
 const delrow=(id)=>{
@@ -98,10 +99,10 @@ function sortTable(c) {
   }
 }
 const modifyAcount=(id)=>{
-  setModify(false)
+  setModify(!modify)
   axios.get("http://localhost:4000/data/"+id)
   .then(r=>{
-   setData(r.data)
+   setData1(r.data)
   })
   .catch(e=>{
    console.log(e.data)
@@ -109,7 +110,7 @@ const modifyAcount=(id)=>{
 }
 const modifyData=(e,id)=>{
  
-  axios.put("http://localhost:4000/data/"+id ,data)
+  axios.put("http://localhost:4000/data/"+id ,data1)
     .then(r=>{
       alert("Updated")
       console.log(r.data)
@@ -117,17 +118,20 @@ const modifyData=(e,id)=>{
     .catch(e=>{
       console.log(e.data)
     })
-    navigate("/inputScreen")
+    setModify(!modify);
+   fetch();
 }
 
 const addacount=(e)=>{
   e.preventDefault();
-  setAdd(false)
+  setAdd(!add)
 }
 const adddata=(e)=>{
   e.preventDefault()
   Postdata(data);
- navigate("/inputScreen")
+ setAdd(!add);
+ setData1({});
+fetch();
 }
 
   return (
@@ -200,26 +204,26 @@ Quarter:<select value={data.Q} onChange={(e)=>setData({...data,Q:e.target.value}
         {modify?"":
         <tr>
         
-        <td><input type='text' value={data.vertical} onChange={(e)=>setData({...data,vertical:e.target.value})}/></td>
-        <td><input type='text' value={data.code} onChange={(e)=>setData({...data,code:e.target.value})}/></td>
-        <td><input type='number' value={data.BE} onChange={(e)=>setData({...data,BE:e.target.value})}/></td>
-        <td><input type='number' value={data.BETBU} onChange={(e)=>setData({...data,BETBU:e.target.value})}/></td>
-        <td><input type='number' value={data.change} onChange={(e)=>setData({...data,change:e.target.value})}/></td>
-        <td><input type='number'value={data.confirmed} onChange={(e)=>setData({...data,confirmed:e.target.value})} /></td>
-        <td><input type='number'value={data.HP} onChange={(e)=>setData({...data,HP:e.target.value})} /></td>
-        <td><input type='number' value={data.confHP} onChange={(e)=>setData({...data,confHP:e.target.value})}/></td>
-        <td><input type='number' value={data.LP} onChange={(e)=>setData({...data,LP:e.target.value})}/></td>
-        <td><input type='number' value={data.risk} onChange={(e)=>setData({...data,risk:e.target.value})}/></td>
-        <td><input type='number' value={data.rag} onChange={(e)=>setData({...data,rag:e.target.value})}/></td>
-        <td><input type='number' value={data.rar} onChange={(e)=>setData({...data,rar:e.target.value})}/></td>
-        <td><input type='number' value={data.rtin} onChange={(e)=>setData({...data,rtin:e.target.value})}/></td>
-        <td><input type='number' value={data.rtout} onChange={(e)=>setData({...data,rtout:e.target.value})}/></td>
-        <td><input type='number' value={data.julRTBR} onChange={(e)=>setData({...data,julRTBR:e.target.value})}/></td>
-        <td><input type='number' value={data.augRTBR} onChange={(e)=>setData({...data,augRTBR:e.target.value})}/></td>
-        <td><input type='number' value={data.sepRTBR} onChange={(e)=>setData({...data,sepRTBR:e.target.value})}/></td>
+        <td><input type='text' value={data1.vertical} onChange={(e)=>setData1({...data,vertical:e.target.value})}/></td>
+        <td><input type='text' value={data1.code} onChange={(e)=>setData1({...data1,code:e.target.value})}/></td>
+        <td><input type='number' value={data1.BE} onChange={(e)=>setData1({...data1,BE:e.target.value})}/></td>
+        <td><input type='number' value={data1.BETBU} onChange={(e)=>setData1({...data1,BETBU:e.target.value})}/></td>
+        <td><input type='number' value={data1.change} onChange={(e)=>setData1({...data1,change:e.target.value})}/></td>
+        <td><input type='number'value={data1.confirmed} onChange={(e)=>setData1({...data1,confirmed:e.target.value})} /></td>
+        <td><input type='number'value={data1.HP} onChange={(e)=>setData1({...data1,HP:e.target.value})} /></td>
+        <td><input type='number' value={data1.confHP} onChange={(e)=>setData1({...data1,confHP:e.target.value})}/></td>
+        <td><input type='number' value={data1.LP} onChange={(e)=>setData1({...data1,LP:e.target.value})}/></td>
+        <td><input type='number' value={data1.risk} onChange={(e)=>setData1({...data1,risk:e.target.value})}/></td>
+        <td><input type='number' value={data1.rag} onChange={(e)=>setData1({...data1,rag:e.target.value})}/></td>
+        <td><input type='number' value={data1.rar} onChange={(e)=>setData1({...data1,rar:e.target.value})}/></td>
+        <td><input type='number' value={data1.rtin} onChange={(e)=>setData1({...data1,rtin:e.target.value})}/></td>
+        <td><input type='number' value={data1.rtout} onChange={(e)=>setData1({...data1,rtout:e.target.value})}/></td>
+        <td><input type='number' value={data1.julRTBR} onChange={(e)=>setData1({...data1,julRTBR:e.target.value})}/></td>
+        <td><input type='number' value={data1.augRTBR} onChange={(e)=>setData1({...data1,augRTBR:e.target.value})}/></td>
+        <td><input type='number' value={data1.sepRTBR} onChange={(e)=>setData1({...data1,sepRTBR:e.target.value})}/></td>
         <td colSpan="3"></td>
-        <td><input type='text' value={data.remarks} onChange={(e)=>setData({...data,remarks:e.target.value})}/></td>
-        <td colSpan="2"><button  className="btn btn-outline-success" onClick={(e)=>{modifyData(e,data.id)}}>Save</button></td>
+        <td><input type='text' value={data1.remarks} onChange={(e)=>setData1({...data1,remarks:e.target.value})}/></td>
+        <td colSpan="2"><button  className="btn btn-outline-success" onClick={(e)=>{modifyData(e,data1.id)}}>Save</button></td>
         </tr>}
         </thead>
         <tbody>
