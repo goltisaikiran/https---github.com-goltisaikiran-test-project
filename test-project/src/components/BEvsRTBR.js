@@ -6,6 +6,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Postdata } from '../SErvixe/Postdata';
 
 function BEvsRTBR() {
+  const [abc]=useState();
   // let navigate=useNavigate();
   const [tab,setTab]=useState({ });
   const [add,setAdd]=useState(true);
