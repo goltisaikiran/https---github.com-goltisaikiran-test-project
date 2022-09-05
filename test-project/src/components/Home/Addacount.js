@@ -41,10 +41,11 @@ function Addacount() {
        }
 
   return (
-    <div style={{marginTop:"2%"}}>
-    <form className="form" style={{ width: "60%",marginLeft:"20%"}} onSubmit={submit}>
+    <div >
+    <form className="form"  onSubmit={submit}>
         
-    Vertical:<br/><input type="text" placeholder='Vertical'  value={data.vertical} className="form-control" 
+      Vertical:<br/>
+      <input type="text" placeholder='Vertical'  value={data.vertical} className="form-control" 
       onChange={(e)=>setData({...data,vertical:e.target.value})}/><br/>
       Master Customer Code:<br/><input type="text" placeholder='code'  value={data.code} className="form-control" 
       onChange={(e)=>setData({...data,code:e.target.value})}/><br/>

@@ -9,13 +9,13 @@ function Home() {
   return (
     <div>
       <h1 className="heading">Welcome</h1>
-      <button
+      <button type="submit"
         style={{
           marginLeft: "46%",
           color: "white",
           backgroundColor: "rgba(132, 38, 191,1)",
         }}
-        className="btn "
+        className="btn " id="btn"
         onClick={addacount}
       >
         AddAccount

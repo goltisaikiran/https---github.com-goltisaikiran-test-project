@@ -143,9 +143,9 @@ fetch();
 }
 
   return (
-    <div style={{marginTop:"1%",overflow:"scroll"}}>
+    <div className='table'>
   
-<form  style={{marginLeft:"5%"}}>
+<form  className='quater'>
 Quarter:<select value={data.Q} onChange={(e)=>setData({...data,Q:e.target.value})}>
   <option>Q1</option>
   <option>Q2</option>
@@ -159,7 +159,7 @@ Quarter:<select value={data.Q} onChange={(e)=>setData({...data,Q:e.target.value}
         }}
         className="btn " onClick={(e)=>{addacount(e)}}>Add</button>
 </form>
-        <table id="myTable" style={{ margin:"1%",textAlign:"center"}} className="table table-bordered table-striped" border="3">
+        <table id="myTable" className="table table-bordered table-striped" border="3">
         <thead>
           <tr >
            <th>Vertical</th>

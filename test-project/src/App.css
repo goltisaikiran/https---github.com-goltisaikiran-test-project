@@ -70,12 +70,31 @@ display:flex;
 justify-content:center;
   color:blue
 }
+#btn{
+  display:flex;
+  justify-content:center;
+ 
+  color: "white";
+  background-color: "rgba(132, 38, 191,1)";
+}
 .form{
   background-color:cornsilk;
-  padding:7%
+  padding:7%;
+  width:60%;
+  margin-left: 20%;
+  margin-top: 2%;
 } 
-
-
+.quater{
+  margin-left: 5%;
+}
+#myTable{
+  margin: 1%;
+  text-align: center;
+}
+.table{
+  overflow: scroll;
+margin-top: 1%;
+}
 td input {
   resize: horizontal;
   width: 50px;

@@ -5,27 +5,27 @@ import {useParams} from 'react-router-dom'
 function Modify() {
   let params = useParams();
   const [data,setData]=useState({
-    vertical:"",
-      code:"",
-      BE:"",
-      BETBU:"",
-      change:"",
-      confirmed:"",
-      HP:"",
-      confHP:"",
-      LP:"",
-      risk:"",
-      rag:"",
-      rar:"",
-      rtin:"",
-      rtout:"",
-      julRTBR:"",
-      augRTBR:"",
-      sepRTBR:"",
-      Q2RTBR:"",
-      RTBR_BE:"",
-      RTBR_HPBE:"",
-      remarks:""
+    // vertical:"",
+    //   code:"",
+    //   BE:"",
+    //   BETBU:"",
+    //   change:"",
+    //   confirmed:"",
+    //   HP:"",
+    //   confHP:"",
+    //   LP:"",
+    //   risk:"",
+    //   rag:"",
+    //   rar:"",
+    //   rtin:"",
+    //   rtout:"",
+    //   julRTBR:"",
+    //   augRTBR:"",
+    //   sepRTBR:"",
+    //   Q2RTBR:"",
+    //   RTBR_BE:"",
+    //   RTBR_HPBE:"",
+    //   remarks:""
   });
   useEffect(()=>{
    axios.get("http://localhost:4000/data/"+params.id)
@@ -52,7 +52,7 @@ function Modify() {
    }
   return (
     <div >
-    <form className="form" style={{ width: "60%",marginLeft:"20%",marginTop:"2%"}} onSubmit={submit}>
+    <form className="form"  onSubmit={submit}>
         
         Vertical:<br/><input type="text" placeholder={data.vertical} className="form-control" 
           onChange={(e)=>setData({...data,vertical:e.target.value})}/><br/>
