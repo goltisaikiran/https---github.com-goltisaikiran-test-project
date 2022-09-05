@@ -3,7 +3,7 @@
     {
       "vertical": "jhkjhkj",
       "code": "jkjkjkj",
-      "BE": "52",
+      "BE": "909",
       "BETBU": "76",
       "change": "56",
       "confirmed": "65",
@@ -169,6 +169,31 @@
       "RTBR_BE": "",
       "RTBR_HPBE": "",
       "remarks": "fgfdgfdg"
+    },
+    {
+      "Q": "",
+      "id": 16,
+      "vertical": "kjkjd",
+      "code": "hkjh",
+      "BE": "98",
+      "BETBU": "67",
+      "change": "76",
+      "confirmed": "876",
+      "HP": "98",
+      "confHP": "097",
+      "LP": "908",
+      "risk": "08",
+      "rag": "09",
+      "rar": "",
+      "rtin": "",
+      "rtout": "",
+      "julRTBR": "",
+      "augRTBR": "",
+      "sepRTBR": "",
+      "Q2RTBR": "",
+      "RTBR_BE": "",
+      "RTBR_HPBE": "",
+      "remarks": ""
     }
   ]
 }

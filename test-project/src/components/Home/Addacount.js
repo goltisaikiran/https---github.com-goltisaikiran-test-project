@@ -1,6 +1,6 @@
 import React from 'react'
 import {useState} from 'react'
-import { Postdata } from '../SErvixe/Postdata';
+import axios from 'axios';
 
 function Addacount() {
 
@@ -29,7 +29,15 @@ function Addacount() {
         remarks:""
     });
        const submit=(event)=>{
-       Postdata(data);
+        axios.post("http://localhost:4000/data/" ,data)
+        .then(r=>{
+          alert("Added  ")
+          console.log(r.data)
+        })
+        .catch(e=>{
+          console.log(e.data)
+        })
+  
        }
 
   return (

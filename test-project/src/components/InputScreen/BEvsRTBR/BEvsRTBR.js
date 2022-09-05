@@ -3,7 +3,7 @@ import axios from 'axios'
 import {useState, useEffect} from 'react'
 // import {  useNavigate } from 'react-router-dom';
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Postdata } from '../SErvixe/Postdata';
+// import { Postdata } from '../../../SErvixe/Postdata';
 
 function BEvsRTBR() {
 
@@ -129,7 +129,14 @@ const addacount=(e)=>{
 }
 const adddata=(e)=>{
   e.preventDefault()
-  Postdata(data);
+  axios.post("http://localhost:4000/data/" ,data)
+  .then(r=>{
+    alert("Added  ")
+    console.log(r.data)
+  })
+  .catch(e=>{
+    console.log(e.data)
+  })
  setAdd(!add);
  setData1({});
 fetch();
