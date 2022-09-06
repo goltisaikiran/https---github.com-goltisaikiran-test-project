@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios'
+import VolAdd from "./VolAdd"
 import {useState, useEffect} from 'react'
 
 function Voltrend() {
@@ -8,29 +9,7 @@ function Voltrend() {
   const [modify,setModify]=useState(true);
   const [data1 ,setData1] =useState({});
   const[data,setData] =useState({
-    Q:"",
-    id:"",
-    vertical:"",
-    code:"",
-    BE:"",
-    BETBU:"",
-    change:"",
-    confirmed:"",
-    HP:"",
-    confHP:"",
-    LP:"",
-    risk:"",
-    rag:"",
-    rar:"",
-    rtin:"",
-    rtout:"",
-    julRTBR:"",
-    augRTBR:"",
-    sepRTBR:"",
-    Q2RTBR:"",
-    RTBR_BE:"",
-    RTBR_HPBE:"",
-    remarks:""
+
   })
   
 const fetch=()=>{
@@ -46,7 +25,8 @@ const fetch=()=>{
 
  useEffect(()=>{
 fetch();
-},[])
+},[add, modify])
+
 const delrow=(id)=>{
   axios.delete("http://localhost:4000/data/"+id)
   .then(r=>{
@@ -178,6 +158,29 @@ const delrow=(id)=>{
                 <th>SUM Q4</th>
                 <th colSpan="2">Action</th>
               </tr>
+              <VolAdd flag={add} data={data1} fun={adddata} />
+              {modify?"":
+        <tr>
+         <td><input type='text' value={data1.vertical} onChange={(e)=>setData1({...data1,vertical:e.target.value})}/></td>
+        <td><input type='text' value={data1.code} onChange={(e)=>setData1({...data1,code:e.target.value})}/></td>
+        <td><input type='number' value={data1.apr} onChange={(e)=>setData1({...data1,apr:e.target.value})}/></td>
+        <td><input type='number' value={data1.may} onChange={(e)=>setData1({...data1,may:e.target.value})}/></td>
+        <td><input type='number' value={data1.jun} onChange={(e)=>setData1({...data1,jun:e.target.value})}/></td>
+        <td></td>
+        <td><input type='number' value={data1.jul} onChange={(e)=>setData1({...data1,jul:e.target.value})}/></td>
+        <td><input type='number' value={data1.aug} onChange={(e)=>setData1({...data1,aug:e.target.value})}/></td>
+        <td><input type='number'value={data1.sep} onChange={(e)=>setData1({...data1,sep:e.target.value})} /></td>
+        <td></td>
+        <td><input type='number'value={data1.oct} onChange={(e)=>setData1({...data1,oct:e.target.value})} /></td>
+        <td><input type='number' value={data1.nov} onChange={(e)=>setData1({...data1,nov:e.target.value})}/></td>
+        <td><input type='number' value={data1.dec} onChange={(e)=>setData1({...data1,dec:e.target.value})}/></td>
+        <td></td>
+        <td><input type='number' value={data1.jan} onChange={(e)=>setData1({...data1,jan:e.target.value})}/></td>
+        <td><input type='number' value={data1.feb} onChange={(e)=>setData1({...data1,feb:e.target.value})}/></td>
+        <td><input type='number' value={data1.mar} onChange={(e)=>setData1({...data1,mar:e.target.value})}/></td>
+        <td></td>
+        <td colSpan="2"><button  className="btn btn-outline-success" onClick={(e)=>{modifyData(e,data1.id)}}>Save</button></td>
+        </tr>} 
             </thead>
             <tbody>
             {tab.length > 0 && (
@@ -186,22 +189,22 @@ const delrow=(id)=>{
                     <tr key={d.id}>
                 <td >{d.vertical}</td>
                 <td >{d.code}</td>
-                <td >{d.r.apr}</td>
-                <td >{d.r.may}</td>
-                <td >{d.r.jun}</td>
-                <td style={{"backgroundColor":"lightgreen"}}>{Number(d.r.apr)+Number(d.r.may)+Number(d.r.jun)}</td>
-                <td>{d.r.jul}</td>
-                <td >{d.r.aug}</td>
-                <td>{d.r.sep}</td>
-                <td style={{"backgroundColor":"lightgreen"}}>{Number(d.r.jul)+Number(d.r.aug)+Number(d.r.sep)}</td>
-                <td >{d.r.oct}</td>
-                <td >{d.r.nov}</td>
-                <td >{d.r.dec}</td>
-                <td style={{"backgroundColor":"lightgreen"}}>{Number(d.r.oct)+Number(d.r.nov)+Number(d.r.dec)}</td>
-                <td>{d.r.jan}</td>
-                <td>{d.r.feb}</td>
-                <td>{d.r.mar}</td>
-                <td style={{"backgroundColor":"lightgreen"}}>{Number(d.r.jan)+Number(d.r.feb)+Number(d.r.mar)}</td>
+                <td >{d.apr}</td>
+                <td >{d.may}</td>
+                <td >{d.jun}</td>
+                <td style={{"backgroundColor":"lightgreen"}}>{Number(d.apr)+Number(d.may)+Number(d.jun)}</td>
+                <td>{d.jul}</td>
+                <td >{d.aug}</td>
+                <td>{d.sep}</td>
+                <td style={{"backgroundColor":"lightgreen"}}>{Number(d.jul)+Number(d.aug)+Number(d.sep)}</td>
+                <td >{d.oct}</td>
+                <td >{d.nov}</td>
+                <td >{d.dec}</td>
+                <td style={{"backgroundColor":"lightgreen"}}>{Number(d.oct)+Number(d.nov)+Number(d.dec)}</td>
+                <td>{d.jan}</td>
+                <td>{d.feb}</td>
+                <td>{d.mar}</td>
+                <td style={{"backgroundColor":"lightgreen"}}>{Number(d.jan)+Number(d.feb)+Number(d.mar)}</td>
               
                             
                 <td><button  className="btn btn-outline-info" onClick={()=>{modifyAcount(d.id)}}>Modify</button></td>

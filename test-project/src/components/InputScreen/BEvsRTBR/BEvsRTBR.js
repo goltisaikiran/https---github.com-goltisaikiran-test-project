@@ -207,10 +207,10 @@ Quarter:<select value={data.Q} onChange={(e)=>setData({...data,Q:e.target.value}
         <td><input type='number' value={data1.rar} onChange={(e)=>setData1({...data1,rar:e.target.value})}/></td>
         <td><input type='number' value={data1.rtin} onChange={(e)=>setData1({...data1,rtin:e.target.value})}/></td>
         <td><input type='number' value={data1.rtout} onChange={(e)=>setData1({...data1,rtout:e.target.value})}/></td>
-        <td><input type='number' value={data1.julRTBR} onChange={(e)=>setData1({...data1,julRTBR:e.target.value})}/></td>
+        {/* <td><input type='number' value={data1.julRTBR} onChange={(e)=>setData1({...data1,julRTBR:e.target.value})}/></td>
         <td><input type='number' value={data1.augRTBR} onChange={(e)=>setData1({...data1,augRTBR:e.target.value})}/></td>
-        <td><input type='number' value={data1.sepRTBR} onChange={(e)=>setData1({...data1,sepRTBR:e.target.value})}/></td>
-        <td colSpan="3"></td>
+        <td><input type='number' value={data1.sepRTBR} onChange={(e)=>setData1({...data1,sepRTBR:e.target.value})}/></td> */}
+        <td colSpan="6"></td>
         <td><input type='text' value={data1.remarks} onChange={(e)=>setData1({...data1,remarks:e.target.value})}/></td>
         <td colSpan="2"><button  className="btn btn-outline-success" onClick={(e)=>{modifyData(e,data1.id)}}>Save</button></td>
         </tr>} 
@@ -234,18 +234,18 @@ Quarter:<select value={data.Q} onChange={(e)=>setData({...data,Q:e.target.value}
             <td style={{"backgroundColor":"rgb(177,156,217)"}}>{d.rar}</td>
             <td style={{"backgroundColor":"lightgreen"}}>{d.rtin}</td>
             <td style={{"backgroundColor":"lightpink"}}>{d.rtout}</td>
-            <td>{data.Q==="Q4"?d.r.jan:data.Q==="Q3"?d.r.oct:data.Q==="Q2"?d.r.jul:d.r.apr}</td>
-            <td>{data.Q==="Q4"?d.r.feb:data.Q==="Q3"?d.r.nov:data.Q==="Q2"?d.r.aug:d.r.may}</td>
-            <td>{data.Q==="Q4"?d.r.mar:data.Q==="Q3"?d.r.dec:data.Q==="Q2"?d.r.sep:d.r.jun}</td>
-            <td>{Number(data.Q==="Q4"?d.r.jan:data.Q==="Q3"?d.r.oct:data.Q==="Q2"?d.r.jul:d.r.apr)+
-            Number(data.Q==="Q4"?d.r.feb:data.Q==="Q3"?d.r.nov:data.Q==="Q2"?d.r.aug:d.r.may)+
-            Number(data.Q==="Q4"?d.r.mar:data.Q==="Q3"?d.r.dec:data.Q==="Q2"?d.r.sep:d.r.jun)}</td>
-            <td>{Number(data.Q==="Q4"?d.r.jan:data.Q==="Q3"?d.r.oct:data.Q==="Q2"?d.r.jul:d.r.apr)+
-            Number(data.Q==="Q4"?d.r.feb:data.Q==="Q3"?d.r.nov:data.Q==="Q2"?d.r.aug:d.r.may)+
-            Number(data.Q==="Q4"?d.r.mar:data.Q==="Q3"?d.r.dec:data.Q==="Q2"?d.r.sep:d.r.jun)-Number(d.BE)}</td>
-            <td>{Number(data.Q==="Q4"?d.r.jan:data.Q==="Q3"?d.r.oct:data.Q==="Q2"?d.r.jul:d.r.apr)+
-            Number(data.Q==="Q4"?d.r.feb:data.Q==="Q3"?d.r.nov:data.Q==="Q2"?d.r.aug:d.r.may)+
-            Number(data.Q==="Q4"?d.r.mar:data.Q==="Q3"?d.r.dec:data.Q==="Q2"?d.r.sep:d.r.jun)-Number(d.BETBU)}</td>
+            <td>{data.Q==="Q4"?d.jan:data.Q==="Q3"?d.oct:data.Q==="Q2"?d.jul:d.apr}</td>
+            <td>{data.Q==="Q4"?d.feb:data.Q==="Q3"?d.nov:data.Q==="Q2"?d.aug:d.may}</td>
+            <td>{data.Q==="Q4"?d.mar:data.Q==="Q3"?d.dec:data.Q==="Q2"?d.sep:d.jun}</td>
+            <td>{Number(data.Q==="Q4"?d.jan:data.Q==="Q3"?d.oct:data.Q==="Q2"?d.jul:d.apr)+
+            Number(data.Q==="Q4"?d.feb:data.Q==="Q3"?d.nov:data.Q==="Q2"?d.aug:d.may)+
+            Number(data.Q==="Q4"?d.mar:data.Q==="Q3"?d.dec:data.Q==="Q2"?d.sep:d.jun)}</td>
+            <td>{Number(data.Q==="Q4"?d.jan:data.Q==="Q3"?d.oct:data.Q==="Q2"?d.jul:d.apr)+
+            Number(data.Q==="Q4"?d.feb:data.Q==="Q3"?d.nov:data.Q==="Q2"?d.aug:d.may)+
+            Number(data.Q==="Q4"?d.mar:data.Q==="Q3"?d.dec:data.Q==="Q2"?d.sep:d.jun)-Number(d.BE)}</td>
+            <td>{Number(data.Q==="Q4"?d.jan:data.Q==="Q3"?d.oct:data.Q==="Q2"?d.jul:d.apr)+
+            Number(data.Q==="Q4"?d.feb:data.Q==="Q3"?d.nov:data.Q==="Q2"?d.aug:d.may)+
+            Number(data.Q==="Q4"?d.mar:data.Q==="Q3"?d.dec:data.Q==="Q2"?d.sep:d.jun)-Number(d.BETBU)}</td>
             <td>{d.remarks}</td>            
             <td><button  className="btn btn-outline-info" onClick={()=>{modifyAcount(d.id)}}>Modify</button></td>
             <td><button className="btn btn-outline-danger" onClick={()=>delrow(d.id)}>Delete</button> </td>
