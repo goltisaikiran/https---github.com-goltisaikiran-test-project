@@ -1,6 +1,8 @@
 import React from 'react'
 import axios from 'axios'
 import {useState, useEffect} from 'react'
+import Add from './Add'
+
 // import {  useNavigate } from 'react-router-dom';
 import "bootstrap/dist/css/bootstrap.min.css";
 // import { Postdata } from '../../../SErvixe/Postdata';
@@ -100,10 +102,11 @@ function sortTable(c) {
   }
 }
 const modifyAcount=(id)=>{
-  setModify(!modify)
+  setModify(!modify)  
   axios.get("http://localhost:4000/data/"+id)
   .then(r=>{
    setData1(r.data)
+   console.log(data1)
   })
   .catch(e=>{
    console.log(e.data)
@@ -127,7 +130,7 @@ const addacount=(e)=>{
   e.preventDefault();
   setAdd(!add)
 }
-const adddata=(e)=>{
+const adddata=(e,id,data)=>{
   e.preventDefault()
   axios.post("http://localhost:4000/data/" ,data)
   .then(r=>{
@@ -138,7 +141,7 @@ const adddata=(e)=>{
     console.log(e.data)
   })
  setAdd(!add);
- setData1({});
+//  setData1({});
 fetch();
 }
 
@@ -157,7 +160,7 @@ Quarter:<select value={data.Q} onChange={(e)=>setData({...data,Q:e.target.value}
           color: "white",
           backgroundColor: "rgba(132, 38, 191,1)",
         }}
-        className="btn " onClick={(e)=>{addacount(e)}}>Add</button>
+        className="btn " onClick={(e)=>{addacount(e,data,add)}}>Add</button>
 </form>
         <table id="myTable" className="table table-bordered table-striped" border="3">
         <thead>
@@ -185,31 +188,9 @@ Quarter:<select value={data.Q} onChange={(e)=>setData({...data,Q:e.target.value}
             <th>Remarks</th>
             <th colSpan="2">Action</th>
           </tr>
-        {add?"":
-        <tr>
+        <Add flag={add} data={data} fun={adddata} />
         
-        <td><input type='text' value={data.vertical} onChange={(e)=>setData({...data,vertical:e.target.value})}/></td>
-        <td><input type='text' value={data.code} onChange={(e)=>setData({...data,code:e.target.value})}/></td>
-        <td><input type='number' value={data.BE} onChange={(e)=>setData({...data,BE:e.target.value})}/></td>
-        <td><input type='number' value={data.BETBU} onChange={(e)=>setData({...data,BETBU:e.target.value})}/></td>
-        <td><input type='number' value={data.change} onChange={(e)=>setData({...data,change:e.target.value})}/></td>
-        <td><input type='number'value={data.confirmed} onChange={(e)=>setData({...data,confirmed:e.target.value})} /></td>
-        <td><input type='number'value={data.HP} onChange={(e)=>setData({...data,HP:e.target.value})} /></td>
-        <td><input type='number' value={data.confHP} onChange={(e)=>setData({...data,confHP:e.target.value})}/></td>
-        <td><input type='number' value={data.LP} onChange={(e)=>setData({...data,LP:e.target.value})}/></td>
-        <td><input type='number' value={data.risk} onChange={(e)=>setData({...data,risk:e.target.value})}/></td>
-        <td><input type='number' value={data.rag} onChange={(e)=>setData({...data,rag:e.target.value})}/></td>
-        <td><input type='number' value={data.rar} onChange={(e)=>setData({...data,rar:e.target.value})}/></td>
-        <td><input type='number' value={data.rtin} onChange={(e)=>setData({...data,rtin:e.target.value})}/></td>
-        <td><input type='number' value={data.rtout} onChange={(e)=>setData({...data,rtout:e.target.value})}/></td>
-        <td><input type='number' value={data.julRTBR} onChange={(e)=>setData({...data,julRTBR:e.target.value})}/></td>
-        <td><input type='number' value={data.augRTBR} onChange={(e)=>setData({...data,augRTBR:e.target.value})}/></td>
-        <td><input type='number' value={data.sepRTBR} onChange={(e)=>setData({...data,sepRTBR:e.target.value})}/></td>
-        <td colSpan="3"></td>
-        <td><input type='text' value={data.remarks} onChange={(e)=>setData({...data,remarks:e.target.value})}/></td>
-        <td colSpan="2"><button  className="btn btn-outline-success" onClick={(e)=>{adddata(e)}}>Save</button></td>
-        </tr>}
-        {modify?"":
+         {modify?"":
         <tr>
         
         <td><input type='text' value={data1.vertical} onChange={(e)=>setData1({...data,vertical:e.target.value})}/></td>
@@ -232,7 +213,7 @@ Quarter:<select value={data.Q} onChange={(e)=>setData({...data,Q:e.target.value}
         <td colSpan="3"></td>
         <td><input type='text' value={data1.remarks} onChange={(e)=>setData1({...data1,remarks:e.target.value})}/></td>
         <td colSpan="2"><button  className="btn btn-outline-success" onClick={(e)=>{modifyData(e,data1.id)}}>Save</button></td>
-        </tr>}
+        </tr>} 
         </thead>
         <tbody>
         {tab.length > 0 && (
@@ -253,12 +234,18 @@ Quarter:<select value={data.Q} onChange={(e)=>setData({...data,Q:e.target.value}
             <td style={{"backgroundColor":"rgb(177,156,217)"}}>{d.rar}</td>
             <td style={{"backgroundColor":"lightgreen"}}>{d.rtin}</td>
             <td style={{"backgroundColor":"lightpink"}}>{d.rtout}</td>
-            <td>{d.julRTBR}</td>
-            <td>{d.augRTBR}</td>
-            <td>{d.sepRTBR}</td>
-            <td>{Number(d.julRTBR)+Number(d.augRTBR)+Number(d.sepRTBR)}</td>
-            <td>{Number(d.julRTBR)+Number(d.augRTBR)+Number(d.sepRTBR)-Number(d.BE)}</td>
-            <td>{Number(d.julRTBR)+Number(d.augRTBR)+Number(d.sepRTBR)-Number(d.BETBU)}</td>
+            <td>{data.Q==="Q4"?d.r.jan:data.Q==="Q3"?d.r.oct:data.Q==="Q2"?d.r.jul:d.r.apr}</td>
+            <td>{data.Q==="Q4"?d.r.feb:data.Q==="Q3"?d.r.nov:data.Q==="Q2"?d.r.aug:d.r.may}</td>
+            <td>{data.Q==="Q4"?d.r.mar:data.Q==="Q3"?d.r.dec:data.Q==="Q2"?d.r.sep:d.r.jun}</td>
+            <td>{Number(data.Q==="Q4"?d.r.jan:data.Q==="Q3"?d.r.oct:data.Q==="Q2"?d.r.jul:d.r.apr)+
+            Number(data.Q==="Q4"?d.r.feb:data.Q==="Q3"?d.r.nov:data.Q==="Q2"?d.r.aug:d.r.may)+
+            Number(data.Q==="Q4"?d.r.mar:data.Q==="Q3"?d.r.dec:data.Q==="Q2"?d.r.sep:d.r.jun)}</td>
+            <td>{Number(data.Q==="Q4"?d.r.jan:data.Q==="Q3"?d.r.oct:data.Q==="Q2"?d.r.jul:d.r.apr)+
+            Number(data.Q==="Q4"?d.r.feb:data.Q==="Q3"?d.r.nov:data.Q==="Q2"?d.r.aug:d.r.may)+
+            Number(data.Q==="Q4"?d.r.mar:data.Q==="Q3"?d.r.dec:data.Q==="Q2"?d.r.sep:d.r.jun)-Number(d.BE)}</td>
+            <td>{Number(data.Q==="Q4"?d.r.jan:data.Q==="Q3"?d.r.oct:data.Q==="Q2"?d.r.jul:d.r.apr)+
+            Number(data.Q==="Q4"?d.r.feb:data.Q==="Q3"?d.r.nov:data.Q==="Q2"?d.r.aug:d.r.may)+
+            Number(data.Q==="Q4"?d.r.mar:data.Q==="Q3"?d.r.dec:data.Q==="Q2"?d.r.sep:d.r.jun)-Number(d.BETBU)}</td>
             <td>{d.remarks}</td>            
             <td><button  className="btn btn-outline-info" onClick={()=>{modifyAcount(d.id)}}>Modify</button></td>
             <td><button className="btn btn-outline-danger" onClick={()=>delrow(d.id)}>Delete</button> </td>

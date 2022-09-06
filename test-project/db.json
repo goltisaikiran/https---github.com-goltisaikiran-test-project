@@ -8,7 +8,7 @@
       "change": "56",
       "confirmed": "65",
       "HP": "69",
-      "confHP": "76",
+      "confHP": "78",
       "LP": "54",
       "risk": "76",
       "rag": "76",
@@ -22,7 +22,21 @@
       "RTBR_HPBE": "6",
       "remarks": "lkkjuibkjdud",
       "id": 6,
-      "Q": "Q3"
+      "Q": "Q3",
+      "r": {
+        "apr": "63",
+        "may": "92",
+        "jun": "92",
+        "jul": "92",
+        "aug": "92",
+        "sep": "92",
+        "oct": "92",
+        "nov": "92",
+        "dec": "92",
+        "jan": "92",
+        "feb": "92",
+        "mar": "92"
+      }
     },
     {
       "vertical": "abc",
@@ -46,7 +60,21 @@
       "RTBR_BE": "",
       "RTBR_HPBE": "",
       "remarks": "no emarks",
-      "id": 8
+      "id": 8,
+      "r": {
+        "apr": "63",
+        "may": "92",
+        "jun": "92",
+        "jul": "92",
+        "aug": "92",
+        "sep": "92",
+        "oct": "92",
+        "nov": "92",
+        "dec": "92",
+        "jan": "92",
+        "feb": "92",
+        "mar": "92"
+      }
     },
     {
       "vertical": "saikiran",
@@ -70,6 +98,20 @@
       "RTBR_BE": "",
       "RTBR_HPBE": "",
       "remarks": "nothing",
+      "r": {
+        "apr": "63",
+        "may": "92",
+        "jun": "92",
+        "jul": "92",
+        "aug": "92",
+        "sep": "92",
+        "oct": "92",
+        "nov": "92",
+        "dec": "92",
+        "jan": "92",
+        "feb": "92",
+        "mar": "92"
+      },
       "id": 9
     },
     {
@@ -94,7 +136,21 @@
       "RTBR_BE": "",
       "RTBR_HPBE": "",
       "remarks": "remarks",
-      "id": 10
+      "id": 10,
+      "r": {
+        "apr": "63",
+        "may": "92",
+        "jun": "92",
+        "jul": "92",
+        "aug": "92",
+        "sep": "92",
+        "oct": "92",
+        "nov": "92",
+        "dec": "92",
+        "jan": "92",
+        "feb": "92",
+        "mar": "92"
+      }
     },
     {
       "vertical": "xyz",
@@ -118,7 +174,21 @@
       "RTBR_BE": "",
       "RTBR_HPBE": "",
       "remarks": "no remarks",
-      "id": 11
+      "id": 11,
+      "r": {
+        "apr": "63",
+        "may": "92",
+        "jun": "92",
+        "jul": "92",
+        "aug": "92",
+        "sep": "92",
+        "oct": "92",
+        "nov": "92",
+        "dec": "92",
+        "jan": "92",
+        "feb": "92",
+        "mar": "92"
+      }
     },
     {
       "Q": "",
@@ -143,57 +213,21 @@
       "Q2RTBR": "",
       "RTBR_BE": "",
       "RTBR_HPBE": "",
-      "remarks": "mnkjhiu"
-    },
-    {
-      "Q": "",
-      "id": 15,
-      "vertical": "jkjkjhk",
-      "code": "kjhkjh",
-      "BE": "778",
-      "BETBU": "876878",
-      "change": "",
-      "confirmed": "",
-      "HP": "",
-      "confHP": "",
-      "LP": "",
-      "risk": "",
-      "rag": "",
-      "rar": "",
-      "rtin": "",
-      "rtout": "",
-      "julRTBR": "",
-      "augRTBR": "",
-      "sepRTBR": "",
-      "Q2RTBR": "",
-      "RTBR_BE": "",
-      "RTBR_HPBE": "",
-      "remarks": "fgfdgfdg"
-    },
-    {
-      "Q": "",
-      "id": 16,
-      "vertical": "kjkjd",
-      "code": "hkjh",
-      "BE": "98",
-      "BETBU": "67",
-      "change": "76",
-      "confirmed": "876",
-      "HP": "98",
-      "confHP": "097",
-      "LP": "908",
-      "risk": "08",
-      "rag": "09",
-      "rar": "",
-      "rtin": "",
-      "rtout": "",
-      "julRTBR": "",
-      "augRTBR": "",
-      "sepRTBR": "",
-      "Q2RTBR": "",
-      "RTBR_BE": "",
-      "RTBR_HPBE": "",
-      "remarks": ""
+      "remarks": "mnkjhiu",
+      "r": {
+        "apr": "63",
+        "may": "92",
+        "jun": "92",
+        "jul": "92",
+        "aug": "92",
+        "sep": "92",
+        "oct": "92",
+        "nov": "92",
+        "dec": "92",
+        "jan": "92",
+        "feb": "92",
+        "mar": "92"
+      }
     }
   ]
 }
