@@ -146,7 +146,7 @@ fetch();
 }
 
   return (
-    <div className='table'>
+    <div className='table-responsive'>
   
 <form  className='quater'>
 Quarter:<select value={data.Q} onChange={(e)=>setData({...data,Q:e.target.value})}>
@@ -162,8 +162,8 @@ Quarter:<select value={data.Q} onChange={(e)=>setData({...data,Q:e.target.value}
         }}
         className="btn " onClick={(e)=>{addacount(e,data,add)}}>Add</button>
 </form>
-        <table id="myTable" className="table table-bordered table-striped" border="3">
-        <thead>
+            <table id="myTable" className="table  table-striped table-sm table-hover align-middle" >
+            <thead className="table-info">
           <tr >
            <th>Vertical</th>
             <th>Master Cust Code</th>

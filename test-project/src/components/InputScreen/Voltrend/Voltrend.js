@@ -118,7 +118,7 @@ const delrow=(id)=>{
   
 
   return (
-    <div className='table'>
+    <div className='table-responsive'>
 
   
     <form  className='quater'>
@@ -135,9 +135,9 @@ const delrow=(id)=>{
             }}
             className="btn " onClick={(e)=>{addacount(e,data,add)}}>Add</button>
     </form>
-            <table id="myTable" className="table table-bordered table-striped" border="3">
-            <thead>
-              <tr >
+            <table id="myTable" className="table  table-striped table-sm table-hover align-middle" >
+            <thead className="table-info">
+              <tr  >
                <th>Sector</th>
                 <th>Master Cust Code</th>
                 <th>Apr</th>
@@ -192,19 +192,19 @@ const delrow=(id)=>{
                 <td >{d.apr}</td>
                 <td >{d.may}</td>
                 <td >{d.jun}</td>
-                <td style={{"backgroundColor":"lightgreen"}}>{Number(d.apr)+Number(d.may)+Number(d.jun)}</td>
+                <td className="table-warning">{Number(d.apr)+Number(d.may)+Number(d.jun)}</td>
                 <td>{d.jul}</td>
                 <td >{d.aug}</td>
                 <td>{d.sep}</td>
-                <td style={{"backgroundColor":"lightgreen"}}>{Number(d.jul)+Number(d.aug)+Number(d.sep)}</td>
+                <td className="table-warning">{Number(d.jul)+Number(d.aug)+Number(d.sep)}</td>
                 <td >{d.oct}</td>
                 <td >{d.nov}</td>
                 <td >{d.dec}</td>
-                <td style={{"backgroundColor":"lightgreen"}}>{Number(d.oct)+Number(d.nov)+Number(d.dec)}</td>
+                <td className="table-warning">{Number(d.oct)+Number(d.nov)+Number(d.dec)}</td>
                 <td>{d.jan}</td>
                 <td>{d.feb}</td>
                 <td>{d.mar}</td>
-                <td style={{"backgroundColor":"lightgreen"}}>{Number(d.jan)+Number(d.feb)+Number(d.mar)}</td>
+                <td className="table-warning">{Number(d.jan)+Number(d.feb)+Number(d.mar)}</td>
               
                             
                 <td><button  className="btn btn-outline-info" onClick={()=>{modifyAcount(d.id)}}>Modify</button></td>
