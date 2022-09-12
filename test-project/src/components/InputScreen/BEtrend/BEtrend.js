@@ -2,10 +2,8 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import axios  from 'axios';
 import {useState, useEffect} from 'react'
-import { DataGrid, GridColDef, GridToolbar, GridValueGetterParams } from '@mui/x-data-grid';
-import DataTable from 'react-data-table-component'
-
-
+import { DataGrid, GridColDef, GridToolbar, GridValueGetterParams,GridRowModes,GridActionsCellItem,} from '@mui/x-data-grid';
+// import DataTable from 'react-data-table-component'
 // import MaterialTable from 'material-table'
 
 
@@ -13,11 +11,10 @@ function BEtrend() {
   const [data,setData]=useState([]);
   const columns =[
     {headerName:"id",field:"id"},
-    // {name:"vertical",
-  // selector:row=>row.vertical},
-    {name:"apr",selector:row=>row.apr},
-    // {name:"may",selector:row=>row.may},
-    // {name:"jun",selector:row=>row.jun},
+    {headerName:"vertical",field:"vertical"},
+    {headerName:"apr",field:"apr",editable:"true"},
+    {headerName:"may",field:"may",editable:"true"},
+    {headerName:"jun",field:"jun",editable:"true"},
     //  {name:"Q1Sum",selector:row=>getQ1Sum},
     // {name:"jul",selector:row=>row.jul},
     // {name:"aug",selector:row=>row.aug},
@@ -45,7 +42,9 @@ function BEtrend() {
     {headerName:"Feb",field:"feb",editable:"true"},
     {headerName:"Mar",field:"mar",editable:"true"},
     {headerName:"Q4Sum",valueGetter: getQ4Sum,field:"Q4sum"},
-    {headerName:"Action",field:"Q4su"},
+    {headerName:"Action",field:"action"},
+    
+    
   ];
   const fetch=()=>{
     axios
@@ -62,6 +61,7 @@ function BEtrend() {
    useEffect(()=>{
   fetch();
   },[])
+
   function getQ1Sum(params) {
     return Number(params.row.apr)+Number(params.row.may)+Number(params.row.jun) ;
   }
@@ -75,28 +75,44 @@ function BEtrend() {
     return Number(params.row.jan)+Number(params.row.feb)+Number(params.row.mar) ;
   }
 
-const rows =data.map((row)=>({
-  id:row.id,
-  vertical:row.vertical,
-  apr:row.apr,
-  may:row.may,
-}));
+// const rows =data.map((row)=>({
+//   id:row.id,
+//   vertical:row.vertical,
+//   apr:row.apr,
+//   may:row.may,
+// }));
 
   return (
     <div>
+      <form  className='quater'>
+    Financial Year:<select value={data.Q} onChange={(e)=>setData({...data,Q:e.target.value})}>
+      <option>2022</option>
+      <option>2021</option>
+      <option>2020</option>
+      <option>2019</option>
+    </select>
+    <button style={{
+              marginLeft: "2%",
+              color: "white",
+              backgroundColor: "rgba(132, 38, 191,1)",
+            }}
+            className="btn " onClick={(e)=>{}}>Add</button>
+    </form>
        <Box sx={{ height: 500, width: '100%' }}>
-<DataGrid  columns={columns} rows={data} 
-           
+        <DataGrid  
+        columns={columns} 
+        rows={data} 
+        editMode="row"
           components={{Toolbar:GridToolbar}}
           onCellEditCommit={(params)=>console.log(data)}
           autoHeight
           pageSize={10}    
           rowsPerPageOptions={[10]}
-          checkboxSelection
+          // checkboxSelection
       disableSelectionOnClick
       experimentalFeatures={{ newEditingApi: true }}
   />
-  <DataTable  columns={columns} rows={data} 
+  {/* <DataTable  columns={columns} rows={data} 
            fixedHeader fixedHeaderScrollHeight="600px"
               selectableRows
              selectableRowsHighlight
@@ -104,7 +120,7 @@ const rows =data.map((row)=>({
               actions={
                <button className="btn btn-info">Export</button>
               }
-            />
+            /> */}
 
 </Box>
 

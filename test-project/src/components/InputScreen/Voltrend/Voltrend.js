@@ -115,7 +115,7 @@ const delrow=(id)=>{
   //  setData1({});
   fetch();
   }
-  
+
 
   return (
     <div className='table-responsive'>
@@ -136,8 +136,8 @@ const delrow=(id)=>{
             className="btn " onClick={(e)=>{addacount(e,data,add)}}>Add</button>
     </form>
             <table id="myTable" className="table  table-striped table-sm table-hover align-middle" >
-            <thead className="table-info">
-              <tr  >
+            <thead >
+              <tr className="table-info" >
                <th>Sector</th>
                 <th>Master Cust Code</th>
                 <th>Apr</th>
@@ -182,7 +182,7 @@ const delrow=(id)=>{
         <td colSpan="2"><button  className="btn btn-outline-success" onClick={(e)=>{modifyData(e,data1.id)}}>Save</button></td>
         </tr>} 
             </thead>
-            <tbody>
+            <tbody >
             {tab.length > 0 && (
                 tab.map((d) => {
                   return (

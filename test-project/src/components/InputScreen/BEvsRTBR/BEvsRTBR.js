@@ -163,7 +163,7 @@ Quarter:<select value={data.Q} onChange={(e)=>setData({...data,Q:e.target.value}
         className="btn " onClick={(e)=>{addacount(e,data,add)}}>Add</button>
 </form>
             <table id="myTable" className="table  table-striped table-sm table-hover align-middle" >
-            <thead className="table-info">
+            <thead className="table-info" border="2">
           <tr >
            <th>Vertical</th>
             <th>Master Cust Code</th>

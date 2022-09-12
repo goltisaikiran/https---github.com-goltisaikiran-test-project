@@ -107,3 +107,6 @@ td input:active {
 td input:focus {
   min-width: 100px;
 }
+.header{
+    background-color: "rgba(132, 38, 191,1)";
+}
