@@ -83,13 +83,13 @@ function Addacount() {
      onChange={(e)=>setData({...data,rtin:e.target.value})}/><br/>
       RT Out:<br/><input type="number" placeholder="RT Out" value={data.rtout} className="form-control"
      onChange={(e)=>setData({...data,rtout:e.target.value})}/><br/>
-     Quarter:<select value={data.Q} className="form-control" onChange={(e)=>setData({...data,Q:e.target.value})}>
+     {/* Quarter:<select value={data.Q} className="form-control" onChange={(e)=>setData({...data,Q:e.target.value})}>
   <option>Q1</option>
   <option>Q2</option>
   <option>Q3</option>
   <option>Q4</option>
-</select><br/>
-{data.Q==="Q4"?"JanRTBR":data.Q==="Q1"?"AprRTBR":data.Q==="Q2"?"JulRTBR":"OctRTBR"}:<br/><input type="number" 
+</select><br/> */}
+{/* {data.Q==="Q4"?"JanRTBR":data.Q==="Q1"?"AprRTBR":data.Q==="Q2"?"JulRTBR":"OctRTBR"}:<br/><input type="number" 
      placeholder={data.Q==="Q4"?"JanRTBR":data.Q==="Q1"?"AprRTBR":data.Q==="Q2"?"JulRTBR":"OctRTBR"}
       value={data.julRTBR} className="form-control"
      onChange={(e)=>setData({...data,julRTBR:e.target.value})}/><br/>
@@ -100,7 +100,7 @@ function Addacount() {
      {data.Q==="Q4"?"MarRTBR":data.Q==="Q1"?"JunRTBR":data.Q==="Q2"?"SepRTBR":"DecRTBR"}:
      <br/><input type="number" placeholder={data.Q==="Q4"?"MarRTBR":data.Q==="Q1"?"JunRTBR":data.Q==="Q2"?"SepRTBR":"DecRTBR"}
       value={data.sepRTBR} className="form-control"
-     onChange={(e)=>setData({...data,sepRTBR:e.target.value})}/><br/>
+     onChange={(e)=>setData({...data,sepRTBR:e.target.value})}/><br/> */}
      {/* Q2 RTBR:<br/><input type="number" placeholder="Q2 RTBR" value={data.Q2RTBR} className="form-control"
      onChange={(e)=>setData({...data,Q2RTBR:e.target.value})}/><br/>
       RTBR-BE:<br/><input type="number" placeholder="RTBR-BE" value={data.RTBR_BE} className="form-control"

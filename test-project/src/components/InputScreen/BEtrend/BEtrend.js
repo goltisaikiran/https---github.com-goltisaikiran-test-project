@@ -1,35 +1,29 @@
-import * as React from 'react';
+import  React from 'react';
 import Box from '@mui/material/Box';
 import axios  from 'axios';
 import {useState, useEffect} from 'react'
-import { DataGrid, GridColDef, GridToolbar, GridValueGetterParams,GridRowModes,GridActionsCellItem,} from '@mui/x-data-grid';
-// import DataTable from 'react-data-table-component'
-// import MaterialTable from 'material-table'
+import { DataGrid, GridToolbar} from '@mui/x-data-grid';
+import Modify from '../BEvsRTBR/Modify'
+import { useNavigate } from 'react-router-dom';
 
 
 function BEtrend() {
+  const navigate=useNavigate()
+  const button={
+    marginLeft: "2%",
+    color: "white",
+    backgroundColor: "rgba(132, 38, 191,1)",
+  }
+  const [pageSize, setPageSize] = useState(5);
+ 
   const [data,setData]=useState([]);
   const columns =[
     {headerName:"id",field:"id"},
     {headerName:"vertical",field:"vertical"},
-    {headerName:"apr",field:"apr",editable:"true"},
-    {headerName:"may",field:"may",editable:"true"},
-    {headerName:"jun",field:"jun",editable:"true"},
-    //  {name:"Q1Sum",selector:row=>getQ1Sum},
-    // {name:"jul",selector:row=>row.jul},
-    // {name:"aug",selector:row=>row.aug},
-    // {name:"sep",selector:row=>row.sep},
-    // {name:"Q2Sum",valueGetter: getQ2Sum,field:"Q2sum"},
-    // {name:"oct",selector:row=>row.oct},
-    // {name:"nov",selector:row=>row.nov},
-    // {name:"dec",selector:row=>row.dec},
-    // {name:"Q3Sum",valueGetter: getQ3Sum,field:"Q3sum"},
-    // {name:"Jan",selector:row=>row.jan},
-    // {name:"Feb",selector:row=>row.feb},
-    // {name:"Mar",selector:row=>row.mar},
-    // {name:"Q4Sum",valueGetter: getQ4Sum,field:"Q4sum"},
-    // {name:"Action",cell:(row)=><button className="btn btn-primary" onClick={()=>alert(row.id)}>Delete</button>},
-    {headerName:"Q1Sum",valueGetter: getQ1Sum,field:"Q1sum"},
+    {headerName:"apr",field:"apr",editable:"true",type:'number'},
+    {headerName:"may",field:"may",editable:"true",type:'number'},
+    {headerName:"jun",field:"jun",editable:"true",type:'number'},
+    {headerName:"Q1Sum",valueGetter: getQ1Sum,field:"Q1sum",type:'number'},
     {headerName:"jul",field:"jul",editable:"true"},
     {headerName:"aug",field:"aug",editable:"true"},
     {headerName:"sep",field:"sep",editable:"true"},
@@ -42,7 +36,7 @@ function BEtrend() {
     {headerName:"Feb",field:"feb",editable:"true"},
     {headerName:"Mar",field:"mar",editable:"true"},
     {headerName:"Q4Sum",valueGetter: getQ4Sum,field:"Q4sum"},
-    {headerName:"Action",field:"action"},
+    
     
     
   ];
@@ -61,7 +55,7 @@ function BEtrend() {
    useEffect(()=>{
   fetch();
   },[])
-
+ 
   function getQ1Sum(params) {
     return Number(params.row.apr)+Number(params.row.may)+Number(params.row.jun) ;
   }
@@ -75,12 +69,7 @@ function BEtrend() {
     return Number(params.row.jan)+Number(params.row.feb)+Number(params.row.mar) ;
   }
 
-// const rows =data.map((row)=>({
-//   id:row.id,
-//   vertical:row.vertical,
-//   apr:row.apr,
-//   may:row.may,
-// }));
+
 
   return (
     <div>
@@ -91,37 +80,26 @@ function BEtrend() {
       <option>2020</option>
       <option>2019</option>
     </select>
-    <button style={{
-              marginLeft: "2%",
-              color: "white",
-              backgroundColor: "rgba(132, 38, 191,1)",
-            }}
+    <button style={button}
             className="btn " onClick={(e)=>{}}>Add</button>
     </form>
        <Box sx={{ height: 500, width: '100%' }}>
         <DataGrid  
         columns={columns} 
         rows={data} 
-        editMode="row"
+        // editMode="row"
           components={{Toolbar:GridToolbar}}
-          onCellEditCommit={(params)=>console.log(data)}
+          onCellEditCommit={(params) => console.log(params)}
+        
           autoHeight
-          pageSize={10}    
-          rowsPerPageOptions={[10]}
-          // checkboxSelection
-      disableSelectionOnClick
-      experimentalFeatures={{ newEditingApi: true }}
+          rowsPerPageOptions={[5, 10, 20]}
+          pageSize={pageSize}
+          onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
+          checkboxSelection
+      // disableSelectionOnClick
+      
+      // experimentalFeatures={{ newEditingApi: true }}
   />
-  {/* <DataTable  columns={columns} rows={data} 
-           fixedHeader fixedHeaderScrollHeight="600px"
-              selectableRows
-             selectableRowsHighlight
-             highlightOnHover
-              actions={
-               <button className="btn btn-info">Export</button>
-              }
-            /> */}
-
 </Box>
 
     </div>

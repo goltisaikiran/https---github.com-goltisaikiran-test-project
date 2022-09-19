@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import VolAdd from "./VolAdd"
+import Modify from './Modify'
 import {useState, useEffect} from 'react'
 
 function Voltrend() {
@@ -8,10 +9,9 @@ function Voltrend() {
   const [add,setAdd]=useState(true);
   const [modify,setModify]=useState(true);
   const [data1 ,setData1] =useState({});
-  const[data,setData] =useState({
+ const [selectedId ,setSelectedId]=useState('')
+ 
 
-  })
-  
 const fetch=()=>{
   axios
     .get("http://localhost:4000/data")
@@ -63,6 +63,7 @@ const delrow=(id)=>{
         y = rows[i + 1].getElementsByTagName("TD")[c]
         if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
           shouldSwitch = true;
+          
           break;
         }
       }
@@ -74,14 +75,15 @@ const delrow=(id)=>{
   }
   const modifyAcount=(id)=>{
     setModify(!modify)  
-    axios.get("http://localhost:4000/data/"+id)
-    .then(r=>{
-     setData1(r.data)
-     console.log(data1)
-    })
-    .catch(e=>{
-     console.log(e.data)
-    })
+    setSelectedId(id)
+ axios
+ .get("http://localhost:4000/data/"+id)
+ .then((r) => {
+   setData1(r.data);
+ })
+ .catch((e) => {
+   console.log(e.data);
+ });
   }
   const modifyData=(e,id)=>{
    
@@ -122,7 +124,7 @@ const delrow=(id)=>{
 
   
     <form  className='quater'>
-    Financial Year:<select value={data.Q} onChange={(e)=>setData({...data,Q:e.target.value})}>
+    Financial Year:<select value={data1.Q} onChange={(e)=>setData1({...data1,Q:e.target.value})}>
       <option>2022</option>
       <option>2021</option>
       <option>2020</option>
@@ -133,7 +135,7 @@ const delrow=(id)=>{
               color: "white",
               backgroundColor: "rgba(132, 38, 191,1)",
             }}
-            className="btn " onClick={(e)=>{addacount(e,data,add)}}>Add</button>
+            className="btn " onClick={(e)=>{addacount(e)}}>Add</button>
     </form>
             <table id="myTable" className="table  table-striped table-sm table-hover align-middle" >
             <thead >
@@ -159,31 +161,32 @@ const delrow=(id)=>{
                 <th colSpan="2">Action</th>
               </tr>
               <VolAdd flag={add} data={data1} fun={adddata} />
+              <Modify flag={modify} id={selectedId} data={data1} fun={modifyData} />
               {modify?"":
-        <tr>
-         <td><input type='text' value={data1.vertical} onChange={(e)=>setData1({...data1,vertical:e.target.value})}/></td>
-        <td><input type='text' value={data1.code} onChange={(e)=>setData1({...data1,code:e.target.value})}/></td>
-        <td><input type='number' value={data1.apr} onChange={(e)=>setData1({...data1,apr:e.target.value})}/></td>
-        <td><input type='number' value={data1.may} onChange={(e)=>setData1({...data1,may:e.target.value})}/></td>
-        <td><input type='number' value={data1.jun} onChange={(e)=>setData1({...data1,jun:e.target.value})}/></td>
-        <td></td>
-        <td><input type='number' value={data1.jul} onChange={(e)=>setData1({...data1,jul:e.target.value})}/></td>
-        <td><input type='number' value={data1.aug} onChange={(e)=>setData1({...data1,aug:e.target.value})}/></td>
-        <td><input type='number'value={data1.sep} onChange={(e)=>setData1({...data1,sep:e.target.value})} /></td>
-        <td></td>
-        <td><input type='number'value={data1.oct} onChange={(e)=>setData1({...data1,oct:e.target.value})} /></td>
-        <td><input type='number' value={data1.nov} onChange={(e)=>setData1({...data1,nov:e.target.value})}/></td>
-        <td><input type='number' value={data1.dec} onChange={(e)=>setData1({...data1,dec:e.target.value})}/></td>
-        <td></td>
-        <td><input type='number' value={data1.jan} onChange={(e)=>setData1({...data1,jan:e.target.value})}/></td>
-        <td><input type='number' value={data1.feb} onChange={(e)=>setData1({...data1,feb:e.target.value})}/></td>
-        <td><input type='number' value={data1.mar} onChange={(e)=>setData1({...data1,mar:e.target.value})}/></td>
-        <td></td>
-        <td colSpan="2"><button  className="btn btn-outline-success" onClick={(e)=>{modifyData(e,data1.id)}}>Save</button></td>
-        </tr>} 
+            <tr>
+            <td><input type='text' value={data1.vertical} onChange={(e)=>setData1({...data1,vertical:e.target.value})}/></td>
+           <td><input type='text' value={data1.code} onChange={(e)=>setData1({...data1,code:e.target.value})}/></td>
+           <td><input type='number' value={data1.apr} onChange={(e)=>setData1({...data1,apr:e.target.value})}/></td>
+           <td><input type='number' value={data1.may} onChange={(e)=>setData1({...data1,may:e.target.value})}/></td>
+           <td><input type='number' value={data1.jun} onChange={(e)=>setData1({...data1,jun:e.target.value})}/></td>
+           <td></td>
+           <td><input type='number' value={data1.jul} onChange={(e)=>setData1({...data1,jul:e.target.value})}/></td>
+           <td><input type='number' value={data1.aug} onChange={(e)=>setData1({...data1,aug:e.target.value})}/></td>
+           <td><input type='number'value={data1.sep} onChange={(e)=>setData1({...data1,sep:e.target.value})} /></td>
+           <td></td>
+           <td><input type='number'value={data1.oct} onChange={(e)=>setData1({...data1,oct:e.target.value})} /></td>
+           <td><input type='number' value={data1.nov} onChange={(e)=>setData1({...data1,nov:e.target.value})}/></td>
+           <td><input type='number' value={data1.dec} onChange={(e)=>setData1({...data1,dec:e.target.value})}/></td>
+           <td></td>
+           <td><input type='number' value={data1.jan} onChange={(e)=>setData1({...data1,jan:e.target.value})}/></td>
+           <td><input type='number' value={data1.feb} onChange={(e)=>setData1({...data1,feb:e.target.value})}/></td>
+           <td><input type='number' value={data1.mar} onChange={(e)=>setData1({...data1,mar:e.target.value})}/></td>
+           <td></td>
+           <td colSpan="2"><button  className="btn btn-outline-success" onClick={(e)=>{modifyData(e,data1.id)}}>Save</button></td>
+           </tr>}
             </thead>
             <tbody >
-            {tab.length > 0 && (
+            {tab.length > 0 &&  (
                 tab.map((d) => {
                   return (
                     <tr key={d.id}>

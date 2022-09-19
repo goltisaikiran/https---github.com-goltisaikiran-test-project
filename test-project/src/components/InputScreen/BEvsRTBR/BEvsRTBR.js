@@ -2,6 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import {useState, useEffect} from 'react'
 import Add from './Add'
+import "../../../App.css";
 
 // import {  useNavigate } from 'react-router-dom';
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -39,7 +40,7 @@ function BEvsRTBR() {
     RTBR_HPBE:"",
     remarks:""
   })
-  
+ 
 const fetch=()=>{
   axios
     .get("http://localhost:4000/data")
@@ -132,7 +133,7 @@ const addacount=(e)=>{
 }
 const adddata=(e,id,data)=>{
   e.preventDefault()
-  axios.post("http://localhost:4000/data/" ,data)
+  axios.post("http://localhost:4000/data/",data)
   .then(r=>{
     alert("Added  ")
     console.log(r.data)
@@ -165,13 +166,13 @@ Quarter:<select value={data.Q} onChange={(e)=>setData({...data,Q:e.target.value}
             <table id="myTable" className="table  table-striped table-sm table-hover align-middle" >
             <thead className="table-info" border="2">
           <tr >
-           <th>Vertical</th>
-            <th>Master Cust Code</th>
-            <th>BE on Portal</th>
-            <th>BE TBU</th>
-            <th>Change</th>
-            <th>Confirmed</th>
-            <th>HP</th>
+           <th style={{backgroundColor:"rgba(132, 38, 191,1)"}}>Vertical</th>
+            <th className="Tablehead">Master Cust Code</th>
+            <th className="Tablehead">BE on Portal</th>
+            <th className="Tablehead">BE TBU</th>
+            <th className="Tablehead">Change</th>
+            <th className="Tablehead">Confirmed</th>
+            <th className="Tablehead">HP</th>
             <th>Conf+HP</th>
             <th>LP</th>
             <th>At Risk</th>
